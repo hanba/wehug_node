@@ -151,7 +151,11 @@ define(function(require, exports, module) {
                     UserID: self.user.ID,
                     Auth: self.user.Auth
 
+<<<<<<< HEAD
                 }).load(function(err, res) {
+=======
+                }).load(function (err, res) {
+>>>>>>> origin/abs_v1_1_0
                     if (!err && res.success) {
                         if (res.overdue) {
                             return;
