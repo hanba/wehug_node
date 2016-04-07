@@ -59,13 +59,17 @@ exports.loadConfig = function (callback) {
         var globalConfig = JSON.parse(globalStr);
         var subPromise = new Promise().resolve();
         globalConfig.routes = {};
-
+        //cccode
+       //console.log(globalConfig);
         subPromise.each(globalConfig.projects, function (i, project) {
 
             fs.readFile(path.join(project, 'config.json'), { encoding: 'utf-8' }, function (err, data) {
                 var config = JSON.parse(data);
                 config.root = project;
-
+                //cccode
+                console.log('cccode:');
+                console.log(config);
+                
                 subPromise.next(i, err, config);
             });
 
