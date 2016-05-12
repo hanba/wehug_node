@@ -22,7 +22,9 @@
             $el.removeClass('tip-hide').show().addClass('tip-show');
     }
 
-    exports.msg = function (msg) {
+
+
+    exports.msg = function (msg,callback) {
         var self = this;
 
         self.promise.then(function () {
@@ -34,8 +36,17 @@
                 self.hide();
 
                 self.promise.resolve();
-
+                // console.log(callback);
+                // console.log(typeof callback);
+                if(typeof callback=='function'){
+                    console.log(111);
+                    self.callback(callback);
+                    
+                }
+                
             }, self.msec);
+
+
 
             return this;
         })
@@ -45,7 +56,13 @@
         $el.removeClass('tip-show').addClass('tip-hide');
     }
 
-    sl.tip = function (msg) {
-        exports.msg(msg);
+exports.callback=function (callback) {
+    return this.callback();
+}
+
+
+    sl.tip = function (msg,callback) {
+        exports.msg(msg,callback);
+        
     };
 });

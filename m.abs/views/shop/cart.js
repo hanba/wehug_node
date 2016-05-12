@@ -24,6 +24,14 @@ define(function (require, exports, module) {
                     selectedFreeCoupon: freecouponcode
                 });
 
+if(this.model.data.bag_amount<=0 || this.model.data.data_baglist.length==0){
+    sl.tip('this');
+    $('.btn_buy.js_buy').addClass('disabled');
+    sl.tip('您的购物车内还没有商品!',function(){
+        $('.btn_buy.js_buy').removeClass('disabled');
+    });
+    return false;
+}
                 this.forward('/buy?points=' + this.model.get('Points') + '&from=' + encodeURIComponent(self.route.url));
             },
             'touchmove .ct_coupon_wrap': function (e) {
