@@ -115,6 +115,8 @@ exports.createIndex = function (config, callback) {
 exports.startWebServer = function (config) {
     var express = require('express');
     var app = express();
+    
+    app.use('/dest', express.static(config.dest));
 
     app.get('/', function (req, res) {
         exports.createIndex(config, function (err, html) {
@@ -229,7 +231,6 @@ exports.startWebServer = function (config) {
         });
     });
 
-    app.use('/dest', express.static(config.dest));
 
     for (var key in config.proxy) {
         var proxy = config.proxy[key].split(':');
